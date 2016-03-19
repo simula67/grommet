@@ -81,8 +81,9 @@ var Anchor = function (_Component) {
       var first = this.props.reverse ? children : icon;
       var second = this.props.reverse ? icon : children;
 
+      var Component = this.props.tag;
       return _react2.default.createElement(
-        this.props.tag,
+        Component,
         { id: this.props.id, className: classes,
           href: this.props.href,
           target: this.props.target,
