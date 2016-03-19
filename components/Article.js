@@ -24,6 +24,10 @@ var _KeyboardAccelerators = require('../utils/KeyboardAccelerators');
 
 var _KeyboardAccelerators2 = _interopRequireDefault(_KeyboardAccelerators);
 
+var _DOM = require('../utils/DOM');
+
+var _DOM2 = _interopRequireDefault(_DOM);
+
 var _Props = require('../utils/Props');
 
 var _Props2 = _interopRequireDefault(_Props);
@@ -249,14 +253,31 @@ var Article = function (_Component) {
   }, {
     key: '_onSelect',
     value: function _onSelect(activeIndex) {
+      var _this2 = this;
+
       var childElement = _reactDom2.default.findDOMNode(this.refs[activeIndex]);
-      var rect = childElement.getBoundingClientRect();
-      if ('row' === this.props.direction) {
-        _Scroll2.default.scrollBy(this._scrollParent, 'scrollLeft', rect.left);
-      } else {
-        _Scroll2.default.scrollBy(this._scrollParent, 'scrollTop', rect.top);
+      if (activeIndex !== this.state.activeIndex && childElement) {
+        var rect = childElement.getBoundingClientRect();
+        if ('row' === this.props.direction) {
+          _Scroll2.default.scrollBy(this._scrollParent, 'scrollLeft', rect.left);
+        } else {
+          _Scroll2.default.scrollBy(this._scrollParent, 'scrollTop', rect.top);
+        }
+
+        this.setState({ activeIndex: activeIndex }, function () {
+          var items = childElement.getElementsByTagName('*');
+          var firstFocusable = _DOM2.default.getBestFirstFocusable(items);
+          if (firstFocusable) {
+            firstFocusable.focus();
+          } else {
+            _this2.refs['anchor_step_' + activeIndex].focus();
+          }
+
+          if (_this2.props.onFocusChange) {
+            _this2.props.onFocusChange(activeIndex);
+          }
+        });
       }
-      this.setState({ activeIndex: activeIndex });
     }
   }, {
     key: '_onFocusChange',
@@ -265,6 +286,7 @@ var Article = function (_Component) {
         var parent = _reactDom2.default.findDOMNode(this.refs[index]);
         if (parent && parent.contains(e.target)) {
           this._onSelect(index);
+          return false;
         }
       }.bind(this));
     }
@@ -281,30 +303,24 @@ var Article = function (_Component) {
         //   direction={this.props.direction}
         //   selected={this.state.activeIndex} onChange={this._onSelect} />
       ];
+
+      var a11yTitle = this.props.a11yTitle || {};
       if ('row' === this.props.direction) {
         if (this.state.activeIndex > 0) {
-          controls.push(_react2.default.createElement(
-            _Button2.default,
-            { key: 'previous', plain: true,
-              className: CONTROL_CLASS_PREFIX + '-left',
-              onClick: this._onPrevious },
-            _react2.default.createElement(_LinkPrevious2.default, { size: 'large' })
-          ));
+          controls.push(_react2.default.createElement(_Button2.default, { key: 'previous', plain: true, a11yTitle: a11yTitle.previous,
+            className: CONTROL_CLASS_PREFIX + '-left',
+            onClick: this._onPrevious, icon: _react2.default.createElement(_LinkPrevious2.default, { size: 'large' }) }));
         }
         if (this.state.activeIndex < childCount - 1) {
-          controls.push(_react2.default.createElement(
-            _Button2.default,
-            { key: 'next', plain: true,
-              className: CONTROL_CLASS_PREFIX + '-right',
-              onClick: this._onNext },
-            _react2.default.createElement(_LinkNext2.default, { size: 'large' })
-          ));
+          controls.push(_react2.default.createElement(_Button2.default, { key: 'next', plain: true, a11yTitle: a11yTitle.next,
+            className: CONTROL_CLASS_PREFIX + '-right',
+            onClick: this._onNext, icon: _react2.default.createElement(_LinkNext2.default, { size: 'large' }) }));
         }
       } else {
         if (this.state.activeIndex > 0) {
           controls.push(_react2.default.createElement(
             _Button2.default,
-            { key: 'previous', plain: true,
+            { key: 'previous', plain: true, a11yTitle: a11yTitle.previous,
               className: CONTROL_CLASS_PREFIX + '-up',
               onClick: this._onPrevious },
             _react2.default.createElement(_Up2.default, null)
@@ -313,7 +329,7 @@ var Article = function (_Component) {
         if (this.state.activeIndex < childCount - 1) {
           controls.push(_react2.default.createElement(
             _Button2.default,
-            { key: 'next', plain: true,
+            { key: 'next', plain: true, a11yTitle: a11yTitle.next,
               className: CONTROL_CLASS_PREFIX + '-down',
               onClick: this._onNext },
             _react2.default.createElement(_Down2.default, null)
@@ -326,6 +342,8 @@ var Article = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
+      var _this3 = this;
+
       var classes = [CLASS_ROOT];
       var other = _Props2.default.pick(this.props, Object.keys(_Box2.default.propTypes));
       if (this.props.scrollStep) {
@@ -343,9 +361,26 @@ var Article = function (_Component) {
       var children = this.props.children;
       if (this.props.scrollStep || this.props.controls) {
         children = _react.Children.map(this.props.children, function (element, index) {
-          return element ? _react2.default.cloneElement(element, { ref: index }) : element;
+          if (element) {
+            var elementClone = _react2.default.cloneElement(element, { ref: index });
+            var elementNode = elementClone;
+
+            if (_this3.props.controls) {
+              elementNode = _react2.default.createElement(
+                'div',
+                null,
+                _react2.default.createElement('a', { tabIndex: '-1', 'aria-hidden': 'true',
+                  ref: 'anchor_step_' + index, onFocus: element.props.onFocus }),
+                elementClone
+              );
+            }
+
+            return elementNode;
+          }
         });
       }
+
+      delete other.a11yTitle;
 
       return _react2.default.createElement(
         _Box2.default,
@@ -367,7 +402,13 @@ Article.propTypes = _extends({
   controls: _react.PropTypes.bool,
   primary: _react.PropTypes.bool,
   scrollStep: _react.PropTypes.bool
-}, _Box2.default.propTypes);
+}, _Box2.default.propTypes, {
+  a11yTitle: _react.PropTypes.shape({
+    next: _Props2.default.string,
+    previous: _Props2.default.string
+  }),
+  onFocusChange: _react.PropTypes.func
+});
 
 Article.defaultProps = {
   pad: 'none',
