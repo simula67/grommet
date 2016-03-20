@@ -362,13 +362,20 @@ var Article = function (_Component) {
       if (this.props.scrollStep || this.props.controls) {
         children = _react.Children.map(this.props.children, function (element, index) {
           if (element) {
-            var elementClone = _react2.default.cloneElement(element, { ref: index });
+            var elementClone = _react2.default.cloneElement(element, {
+              ref: index
+            });
             var elementNode = elementClone;
+
+            var ariaHidden = undefined;
+            if (_this3.state.activeIndex !== index) {
+              ariaHidden = 'true';
+            }
 
             if (_this3.props.controls) {
               elementNode = _react2.default.createElement(
                 'div',
-                null,
+                { 'aria-hidden': ariaHidden },
                 _react2.default.createElement('a', { tabIndex: '-1', 'aria-hidden': 'true',
                   ref: 'anchor_step_' + index, onFocus: element.props.onFocus }),
                 elementClone
