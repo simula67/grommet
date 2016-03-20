@@ -107,6 +107,8 @@ var Article = function (_Component) {
         document.addEventListener('wheel', this._onWheel);
 
         this._scrollParent = _reactDom2.default.findDOMNode(this.refs.component);
+
+        this._checkControls();
       }
     }
   }, {
@@ -120,23 +122,25 @@ var Article = function (_Component) {
   }, {
     key: '_checkPreviousNextControls',
     value: function _checkPreviousNextControls(currentScroll, nextProp, prevProp) {
-      var nextStepNode = _reactDom2.default.findDOMNode(this.refs[this.state.activeIndex + 1]);
+      if (currentScroll > 0) {
+        var nextStepNode = _reactDom2.default.findDOMNode(this.refs[this.state.activeIndex + 1]);
 
-      var previousStepNode = _reactDom2.default.findDOMNode(this.refs[this.state.activeIndex - 1]);
+        var previousStepNode = _reactDom2.default.findDOMNode(this.refs[this.state.activeIndex - 1]);
 
-      if (nextStepNode) {
-        var nextStepPosition = nextStepNode.getBoundingClientRect()[nextProp];
+        if (nextStepNode) {
+          var nextStepPosition = nextStepNode.getBoundingClientRect()[nextProp] * (this.state.activeIndex + 1);
 
-        if (currentScroll > nextStepPosition / 2) {
-          this.setState({ activeIndex: this.state.activeIndex + 1 });
+          if (currentScroll > nextStepPosition) {
+            this.setState({ activeIndex: this.state.activeIndex + 1 });
+          }
         }
-      }
 
-      if (previousStepNode) {
-        var previousStepPosition = previousStepNode.getBoundingClientRect()[prevProp];
+        if (previousStepNode) {
+          var previousStepPosition = previousStepNode.getBoundingClientRect()[prevProp] * this.state.activeIndex;
 
-        if (currentScroll < previousStepPosition / 2) {
-          this.setState({ activeIndex: this.state.activeIndex - 1 });
+          if (currentScroll < previousStepPosition) {
+            this.setState({ activeIndex: this.state.activeIndex - 1 });
+          }
         }
       }
     }
@@ -267,9 +271,7 @@ var Article = function (_Component) {
         this.setState({ activeIndex: activeIndex }, function () {
           var items = childElement.getElementsByTagName('*');
           var firstFocusable = _DOM2.default.getBestFirstFocusable(items);
-          if (firstFocusable) {
-            firstFocusable.focus();
-          } else {
+          if (!firstFocusable) {
             _this2.refs['anchor_step_' + activeIndex].focus();
           }
 
