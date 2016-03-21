@@ -45,6 +45,7 @@ var Image = function (_Component) {
       var _classnames;
 
       var _props = this.props;
+      var alt = _props.alt;
       var caption = _props.caption;
       var className = _props.className;
       var full = _props.full;
@@ -54,20 +55,19 @@ var Image = function (_Component) {
 
       var classes = (0, _classnames3.default)(CLASS_ROOT, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, CLASS_ROOT + '--full', typeof full === 'boolean' && full), _defineProperty(_classnames, CLASS_ROOT + '--full-' + full, typeof full === 'string'), _classnames), className);
 
-      return caption ? _react2.default.createElement(
-        'figure',
-        { className: classes },
-        _react2.default.createElement('img', { id: id, src: src, className: CLASS_ROOT + '__image' }),
+      var captionText = typeof caption === 'string' ? caption : alt;
+      var containerClasses = (0, _classnames3.default)(classes, CLASS_ROOT + '__container');
+
+      return caption && captionText ? _react2.default.createElement(
+        'span',
+        { className: containerClasses },
+        _react2.default.createElement('img', { id: id, src: src, alt: alt }),
         _react2.default.createElement(
-          'figcaption',
+          _Label2.default,
           { className: CLASS_ROOT + '__caption' },
-          _react2.default.createElement(
-            _Label2.default,
-            null,
-            caption
-          )
+          captionText
         )
-      ) : _react2.default.createElement('img', { id: id, src: src, className: classes });
+      ) : _react2.default.createElement('img', { id: id, src: src, alt: alt, className: classes });
     }
   }]);
 
@@ -78,7 +78,8 @@ exports.default = Image;
 ;
 
 Image.propTypes = {
-  caption: _react.PropTypes.string,
+  alt: _react.PropTypes.string,
+  caption: _react.PropTypes.oneOfType([_react.PropTypes.bool, _react.PropTypes.string]),
   className: _react.PropTypes.string,
   full: _react.PropTypes.oneOf([true, 'horizontal', 'vertical', false]),
   id: _react.PropTypes.string,
