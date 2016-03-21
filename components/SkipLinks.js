@@ -70,16 +70,9 @@ var SkipLinks = function (_Component) {
       document.addEventListener('DOMNodeInserted', this._updateAnchors);
     }
   }, {
-    key: 'componentWillReceiveProps',
-    value: function componentWillReceiveProps() {
-      this.setState({ routeChanged: true });
-    }
-  }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      if (this.state.routeChanged) {
-        this.setState({ routeChanged: false }, this._updateAnchors);
-      }
+      this._updateAnchors();
     }
   }, {
     key: 'componentWillUnmount',
@@ -90,16 +83,20 @@ var SkipLinks = function (_Component) {
   }, {
     key: '_updateAnchors',
     value: function _updateAnchors() {
-      var anchorElements = document.querySelectorAll('.skip-link-anchor');
+      var _this2 = this;
 
-      var anchors = Array.prototype.map.call(anchorElements, function (anchorElement) {
-        return {
-          id: anchorElement.getAttribute('id'),
-          label: anchorElement.textContent
-        };
-      });
+      setTimeout(function () {
+        var anchorElements = document.querySelectorAll('.skip-link-anchor');
 
-      this.setState({ anchors: anchors });
+        var anchors = Array.prototype.map.call(anchorElements, function (anchorElement) {
+          return {
+            id: anchorElement.getAttribute('id'),
+            label: anchorElement.textContent
+          };
+        });
+
+        _this2.setState({ anchors: anchors });
+      }, 100);
     }
   }, {
     key: '_onFocus',
