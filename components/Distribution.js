@@ -331,6 +331,9 @@ var Distribution = function (_Component) {
         } else {
           this._onActivate(this.state.activeIndex - 1);
         }
+
+        //stop event propagation
+        return true;
       }
     }
   }, {
@@ -345,6 +348,9 @@ var Distribution = function (_Component) {
         } else {
           this._onActivate(this.state.activeIndex + 1);
         }
+
+        //stop event propagation
+        return true;
       }
     }
   }, {

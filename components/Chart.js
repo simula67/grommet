@@ -116,6 +116,9 @@ var Chart = function (_Component) {
         } else {
           this._onMouseOver(this.state.activeXIndex - 1);
         }
+
+        //stop event propagation
+        return true;
       }
     }
   }, {
@@ -131,6 +134,9 @@ var Chart = function (_Component) {
         } else {
           this._onMouseOver(this.state.activeXIndex + 1);
         }
+
+        //stop event propagation
+        return true;
       }
     }
   }, {

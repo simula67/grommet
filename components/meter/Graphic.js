@@ -154,6 +154,9 @@ var Graphic = function (_Component) {
         } else {
           this.props.onActivate(this.props.activeIndex - 1);
         }
+
+        //stop event propagation
+        return true;
       }
     }
   }, {
@@ -168,6 +171,9 @@ var Graphic = function (_Component) {
         } else {
           this.props.onActivate(this.props.activeIndex + 1);
         }
+
+        //stop event propagation
+        return true;
       }
     }
   }, {
