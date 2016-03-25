@@ -94,6 +94,8 @@ var SkipLinks = function (_Component) {
       var skipLinks = document.querySelectorAll('.skip-link-anchor');
       if (skipLinks.length > 0) {
         this._updateAnchors();
+      } else if (this.state.anchors.length > 0) {
+        this._updateAnchors();
       }
     }
   }, {
