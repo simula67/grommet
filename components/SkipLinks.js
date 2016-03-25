@@ -53,6 +53,7 @@ var SkipLinks = function (_Component) {
     _this._processTab = _this._processTab.bind(_this);
     _this._onFocus = _this._onFocus.bind(_this);
     _this._updateAnchors = _this._updateAnchors.bind(_this);
+    _this._checkForSkipLink = _this._checkForSkipLink.bind(_this);
     _this.state = { anchors: [], showLayer: false };
     return _this;
   }
@@ -67,36 +68,47 @@ var SkipLinks = function (_Component) {
       };
       _KeyboardAccelerators2.default.startListeningToKeyboard(this, this._keyboardHandlers);
 
-      document.addEventListener('DOMNodeInserted', this._updateAnchors);
+      document.addEventListener('DOMNodeInserted', this._checkForSkipLink);
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps() {
+      this.setState({ routeChanged: true });
     }
   }, {
     key: 'componentDidUpdate',
     value: function componentDidUpdate() {
-      this._updateAnchors();
+      if (this.state.routeChanged) {
+        this.setState({ routeChanged: false }, this._updateAnchors);
+      }
     }
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keyboardHandlers);
-      document.removeEventListener('DOMNodeInserted', this._updateAnchors);
+      document.removeEventListener('DOMNodeInserted', this._checkForSkipLink);
+    }
+  }, {
+    key: '_checkForSkipLink',
+    value: function _checkForSkipLink(event) {
+      var skipLinks = document.querySelectorAll('.skip-link-anchor');
+      if (skipLinks.length > 0) {
+        this._updateAnchors();
+      }
     }
   }, {
     key: '_updateAnchors',
     value: function _updateAnchors() {
-      var _this2 = this;
+      var anchorElements = document.querySelectorAll('.skip-link-anchor');
 
-      setTimeout(function () {
-        var anchorElements = document.querySelectorAll('.skip-link-anchor');
+      var anchors = Array.prototype.map.call(anchorElements, function (anchorElement) {
+        return {
+          id: anchorElement.getAttribute('id'),
+          label: anchorElement.textContent
+        };
+      });
 
-        var anchors = Array.prototype.map.call(anchorElements, function (anchorElement) {
-          return {
-            id: anchorElement.getAttribute('id'),
-            label: anchorElement.textContent
-          };
-        });
-
-        _this2.setState({ anchors: anchors });
-      }, 100);
+      this.setState({ anchors: anchors, routeChanged: false });
     }
   }, {
     key: '_onFocus',

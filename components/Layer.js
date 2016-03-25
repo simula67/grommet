@@ -256,7 +256,15 @@ var Layer = function (_Component2) {
   }, {
     key: '_handleAriaHidden',
     value: function _handleAriaHidden(hideOverlay) {
-      this._element.setAttribute('aria-hidden', hideOverlay || false);
+      var ariaHidden = hideOverlay || false;
+      this._element.setAttribute('aria-hidden', ariaHidden);
+      var grommetApps = document.querySelectorAll('.app');
+
+      if (grommetApps) {
+        Array.prototype.slice.call(grommetApps).forEach(function (grommetApp) {
+          grommetApp.setAttribute('aria-hidden', !ariaHidden);
+        });
+      }
     }
   }, {
     key: '_renderLayer',
