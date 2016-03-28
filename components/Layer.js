@@ -291,7 +291,7 @@ var Layer = function (_Component2) {
   }, {
     key: 'render',
     value: function render() {
-      return _react2.default.createElement('span', null);
+      return _react2.default.createElement('span', { style: { display: 'none' } });
     }
   }]);
 
