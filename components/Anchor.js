@@ -72,7 +72,7 @@ var Anchor = function (_Component) {
         return child;
       });
 
-      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--disabled', this.props.disabled), _defineProperty(_classnames, CLASS_ROOT + '--icon', icon), _defineProperty(_classnames, CLASS_ROOT + '--icon-label', hasIcon && this.props.label), _defineProperty(_classnames, CLASS_ROOT + '--primary', this.props.primary), _defineProperty(_classnames, CLASS_ROOT + '--reverse', this.props.reverse), _classnames));
+      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--animate-icon', hasIcon && this.props.animateIcon !== false), _defineProperty(_classnames, CLASS_ROOT + '--disabled', this.props.disabled), _defineProperty(_classnames, CLASS_ROOT + '--icon', icon), _defineProperty(_classnames, CLASS_ROOT + '--icon-label', hasIcon && this.props.label), _defineProperty(_classnames, CLASS_ROOT + '--primary', this.props.primary), _defineProperty(_classnames, CLASS_ROOT + '--reverse', this.props.reverse), _classnames));
 
       if (!children) {
         children = this.props.label;
@@ -103,6 +103,7 @@ exports.default = Anchor;
 
 Anchor.propTypes = {
   a11yTitle: _react.PropTypes.string,
+  animateIcon: _react.PropTypes.bool,
   disabled: _react.PropTypes.bool,
   href: _react.PropTypes.string,
   icon: _react.PropTypes.element,
