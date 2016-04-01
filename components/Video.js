@@ -10,9 +10,25 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
+var _classnames2 = require('classnames');
+
+var _classnames3 = _interopRequireDefault(_classnames2);
+
+var _Intl = require('../utils/Intl');
+
+var _Intl2 = _interopRequireDefault(_Intl);
+
 var _Button = require('./Button');
 
 var _Button2 = _interopRequireDefault(_Button);
+
+var _Box = require('./Box');
+
+var _Box2 = _interopRequireDefault(_Box);
+
+var _Expand = require('./icons/base/Expand');
+
+var _Expand2 = _interopRequireDefault(_Expand);
 
 var _Play = require('./icons/base/Play');
 
@@ -27,6 +43,8 @@ var _Refresh = require('./icons/base/Refresh');
 var _Refresh2 = _interopRequireDefault(_Refresh);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -50,6 +68,7 @@ var Video = function (_Component) {
     _this._onClickControl = _this._onClickControl.bind(_this);
     _this._onMouseMove = _this._onMouseMove.bind(_this);
     _this._onClickChapter = _this._onClickChapter.bind(_this);
+    _this._onFullScreen = _this._onFullScreen.bind(_this);
 
     _this.state = { playing: false, progress: 0 };
     return _this;
@@ -120,6 +139,20 @@ var Video = function (_Component) {
       this.setState({ progress: time });
     }
   }, {
+    key: '_onFullScreen',
+    value: function _onFullScreen() {
+      var video = this.refs.video;
+
+      // check if webkit and mozilla fullscreen is available
+      if (video.webkitRequestFullScreen) {
+        video.webkitRequestFullScreen();
+      } else if (video.mozRequestFullScreen) {
+        video.mozRequestFullScreen();
+      } else {
+        console.warn('Your browser doesn\'t support fullscreen.');
+      }
+    }
+  }, {
     key: 'render',
     value: function render() {
       var classes = [CLASS_ROOT];
@@ -135,6 +168,9 @@ var Video = function (_Component) {
       if (this.state.interacting) {
         classes.push(CLASS_ROOT + '--interacting');
       }
+      if (this.props.videoHeader) {
+        classes.push(CLASS_ROOT + '--video-header');
+      }
       if (this.props.colorIndex) {
         classes.push('background-color-index-' + this.props.colorIndex);
       }
@@ -144,27 +180,53 @@ var Video = function (_Component) {
 
       var controlIconSize = 'small' === this.props.size ? null : 'large';
       var controlIcon = this.state.playing ? _react2.default.createElement(_Pause2.default, { size: controlIconSize }) : this.state.ended ? _react2.default.createElement(_Refresh2.default, { size: controlIconSize }) : _react2.default.createElement(_Play2.default, { size: controlIconSize });
+      var a11yControlButtonMessage = this.state.playing ? 'Pause Video' : this.state.ended ? 'Restart Video' : 'Play Video';
+      var a11yControlButtonTitle = _Intl2.default.getMessage(this.context.intl, a11yControlButtonMessage);
 
-      var title;
+      var videoHeader = undefined;
+      var videoSummaryJustify = 'between';
+      if (this.props.videoHeader) {
+        videoHeader = this.props.videoHeader;
+      } else if (this.props.allowFullScreen) {
+        var a11yExpandButtonTitle = _Intl2.default.getMessage(this.context.intl, 'Toggle Fullscreen');
+        // fallback to only displaying full screen icon in header
+        // if allowing fullscreen
+
+        videoHeader = _react2.default.createElement(
+          _Box2.default,
+          { align: 'end', full: 'horizontal' },
+          _react2.default.createElement(_Button2.default, { plain: true, onClick: this._onFullScreen,
+            icon: _react2.default.createElement(_Expand2.default, null), a11yTitle: a11yExpandButtonTitle })
+        );
+      } else {
+        videoSummaryJustify = 'center';
+      }
+
+      var title = undefined;
       if (this.props.title) {
         classes.push(CLASS_ROOT + '--titled');
         title = _react2.default.createElement(
-          'div',
-          { className: CLASS_ROOT + '__title' },
+          _Box2.default,
+          { align: 'center', justify: 'center', className: CLASS_ROOT + '__title' },
           this.props.title
         );
       }
 
-      var timeline;
+      var timeline = undefined;
       if (this.props.timeline && this.props.duration) {
 
-        var chapters = this.props.timeline.map(function (chapter) {
+        var chapters = this.props.timeline.map(function (chapter, index, chapters) {
           var percent = Math.round(chapter.time / this.props.duration * 100);
           var seconds = chapter.time % 60;
           var time = Math.floor(chapter.time / 60) + ':' + (seconds < 10 ? '0' + seconds : seconds);
+          var currentProgress = this.state.progress;
+          var nextChapter = chapters[Math.min(chapters.length - 1, index + 1)];
+
+          var timelineClasses = (0, _classnames3.default)(CLASS_ROOT + '__timeline-chapter', _defineProperty({}, CLASS_ROOT + '__timeline-active', currentProgress !== 0 && currentProgress >= chapter.time && currentProgress < nextChapter.time));
+
           return _react2.default.createElement(
             'div',
-            { key: chapter.time, className: CLASS_ROOT + '__timeline-chapter',
+            { key: chapter.time, className: timelineClasses,
               style: { left: percent.toString() + '%' },
               onClick: this._onClickChapter.bind(this, chapter.time) },
             _react2.default.createElement(
@@ -187,7 +249,7 @@ var Video = function (_Component) {
         );
       }
 
-      var progress;
+      var progress = undefined;
       if (this.props.duration) {
         var percent = Math.round(this.state.progress / this.props.duration * 100);
         progress = _react2.default.createElement(
@@ -198,6 +260,8 @@ var Video = function (_Component) {
         );
       }
 
+      var onClickControl = this.props.onClick || this._onClickControl;
+
       return _react2.default.createElement(
         'div',
         { className: classes.join(' '), onMouseMove: this._onMouseMove },
@@ -207,16 +271,18 @@ var Video = function (_Component) {
           this.props.children
         ),
         _react2.default.createElement(
-          'div',
-          { className: CLASS_ROOT + '__summary' },
+          _Box2.default,
+          { pad: 'none', align: 'center', justify: videoSummaryJustify, className: CLASS_ROOT + '__summary' },
+          videoHeader,
           _react2.default.createElement(
-            _Button2.default,
-            { className: CLASS_ROOT + '__control', plain: true,
-              primary: true,
-              onClick: this._onClickControl },
-            controlIcon
+            _Box2.default,
+            { pad: 'large', align: 'center', justify: 'center' },
+            _react2.default.createElement(_Button2.default, { className: CLASS_ROOT + '__control', plain: true,
+              primary: true, onClick: onClickControl,
+              icon: controlIcon, a11yTitle: a11yControlButtonTitle }),
+            title
           ),
-          title
+          _react2.default.createElement(_Box2.default, null)
         ),
         timeline,
         progress
@@ -239,6 +305,9 @@ Video.propTypes = {
     label: _react.PropTypes.string,
     time: _react.PropTypes.number
   })),
-  title: _react.PropTypes.node
+  title: _react.PropTypes.node,
+  videoHeader: _react.PropTypes.node,
+  onClick: _react.PropTypes.func,
+  allowFullScreen: _react.PropTypes.bool
 };
 module.exports = exports['default'];

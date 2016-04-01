@@ -338,6 +338,7 @@ Tiles.propTypes = _extends({
 
 Tiles.defaultProps = {
   flush: true,
-  justify: 'start'
+  justify: 'start',
+  pad: 'small'
 };
 module.exports = exports['default'];
