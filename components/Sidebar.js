@@ -50,7 +50,7 @@ var Sidebar = function (_Component) {
     value: function render() {
       var _classnames;
 
-      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--primary', this.props.primary), _defineProperty(_classnames, CLASS_ROOT + '--fixed', this.props.fixed), _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _classnames));
+      var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--primary', this.props.primary), _defineProperty(_classnames, CLASS_ROOT + '--fixed', this.props.fixed), _defineProperty(_classnames, CLASS_ROOT + '--full', this.props.full), _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _classnames));
 
       var boxProps = _Props2.default.pick(this.props, Object.keys(_Box2.default.propTypes));
 
@@ -71,11 +71,13 @@ exports.default = Sidebar;
 Sidebar.propTypes = _extends({
   fixed: _react.PropTypes.bool,
   primary: _react.PropTypes.bool, // Deprecated
-  size: _react.PropTypes.oneOf(['small', 'medium', 'large'])
+  size: _react.PropTypes.oneOf(['small', 'medium', 'large']),
+  full: _react.PropTypes.bool
 }, _Box2.default.propTypes);
 
 Sidebar.defaultProps = {
   direction: 'column',
-  primary: false
+  primary: false,
+  full: true
 };
 module.exports = exports['default'];
