@@ -1,51 +1,48 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-// (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
-exports.default = {
+var _enUS = require('./icons/en-US');
+
+var _enUS2 = _interopRequireDefault(_enUS);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _extends({
   IndexFilters: {
     filters: '{quantity, plural,\n  =0 {Filters}\n  =1 {one filter}\n  other {# filters}\n}'
-  },
+  }
+}, _enUS2.default, {
   Active: 'Active',
-  add: 'add',
   Alerts: 'Alerts',
   All: 'All',
-  archive: 'archive',
   area: 'area',
   Bar: 'Bar',
   bar: 'bar',
   Box: 'Box',
-  camera: 'camera',
   Category: 'Category',
   Circle: 'Circle',
   Chart: 'Chart',
   Clear: 'Clear',
   Cleared: 'Cleared',
   Close: 'Close',
-  close: 'close',
   'Close Menu': 'Close Menu',
-  'command-line': 'command line',
   Completed: 'Completed',
   created: 'Created',
   Critical: 'Critical',
   Disabled: 'Disabled',
   Distribution: 'Distribution',
-  down: 'down',
-  download: 'download',
-  edit: 'edit',
   Email: 'Email',
   Error: 'Error',
   Filter: 'Filter',
-  filter: 'filter',
   Footer: 'Footer',
   'Grommet Logo': 'Grommet Logo',
   'Layer': 'Layer',
   line: 'line',
-  'link-next': 'link-next',
-  'link-previous': 'link-previous',
   'Loading': 'Loading',
   loginInvalidPassword: 'Please provide Username and Password.',
   'Log In': 'Log In',
@@ -53,43 +50,33 @@ exports.default = {
   'Main Content': 'Main Content',
   Max: 'Max',
   Menu: 'Menu',
-  menu: 'menu',
   Meter: 'Meter',
   Min: 'Min',
   model: 'Model',
   modified: 'Modified',
   monitor: 'monitor',
-  more: 'more',
   Name: 'Name',
   OK: 'OK',
   Open: 'Open',
   Password: 'Password',
-  power: 'power',
   'Remember me': 'Remember me',
   Resource: 'Resource',
   Running: 'Running',
   Search: 'Search',
-  search: 'search',
   'Skip to': 'Skip to',
+  Sort: 'Sort',
   State: 'State',
   Status: 'Status',
-  subtract: 'subtract',
-  support: 'support',
-  sync: 'sync',
   'Tab Contents': '{activeTitle} Tab Contents',
   Tasks: 'Tasks',
   Time: 'Time',
   Title: 'Title',
   Total: 'Total',
-  trash: 'trash',
   Threshold: 'Threshold',
   Unknown: 'Unknown',
-  upload: 'upload',
-  user: 'user',
   Username: 'Username',
   uri: 'URI',
-  validation: 'validation',
   Value: 'Value',
   Warning: 'Warning'
-};
+});
 module.exports = exports['default'];
