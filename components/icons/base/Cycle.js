@@ -45,12 +45,13 @@ var Icon = function (_Component) {
       var _classnames;
 
       var _props = this.props;
-      var a11yTitle = _props.a11yTitle;
       var a11yTitleId = _props.a11yTitleId;
       var className = _props.className;
       var colorIndex = _props.colorIndex;
       var large = _props.large;
-      var size = _props.size;
+      var _props2 = this.props;
+      var a11yTitle = _props2.a11yTitle;
+      var size = _props2.size;
 
       if (!size && large) {
         size = 'large';
@@ -58,12 +59,11 @@ var Icon = function (_Component) {
 
       var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-cycle', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
 
-      var titleLabel = a11yTitle || 'cycle';
-      a11yTitle = _react2.default.createElement(_FormattedMessage2.default, { id: titleLabel, defaultMessage: titleLabel });
+      a11yTitle = a11yTitle || _react2.default.createElement(_FormattedMessage2.default, { id: 'cycle', defaultMessage: 'cycle' });
 
       return _react2.default.createElement(
         'svg',
-        { version: '1.1', viewBox: '0 0 25.027 24.7583', width: '24px', height: '24px', className: classes, 'aria-labelledby': a11yTitleId },
+        { version: '1.1', viewBox: '0 0 25.027 24.7583', width: '24px', height: '24px', role: 'img', className: classes, 'aria-labelledby': a11yTitleId },
         _react2.default.createElement(
           'title',
           { id: a11yTitleId },
