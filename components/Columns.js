@@ -82,7 +82,7 @@ var Columns = function (_Component) {
       var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, _defineProperty({}, CLASS_ROOT + '--' + this.props.size, this.props.size));
 
       var children = _react2.default.Children.toArray(this.props.children);
-      var childrenPerColumn = Math.floor(children.length / this.state.count);
+      var childrenPerColumn = Math.ceil(children.length / this.state.count);
       var groups = [];
       var offset = 0;
       while (groups.length < this.state.count) {
