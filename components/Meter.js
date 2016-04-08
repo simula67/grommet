@@ -272,22 +272,22 @@ var Meter = function (_Component) {
     key: '_stateFromProps',
     value: function _stateFromProps(props) {
       var total = undefined;
-      if (props.series && props.series.length > 1) {
+      if (props.series) {
         total = this._seriesTotal(props.series);
-      } else if (props.max && props.max.value) {
-        total = props.max.value;
+      } else if (props.hasOwnProperty('value')) {
+        total = props.value;
       } else {
-        total = 100;
+        total = 0;
       }
       var seriesMax = undefined;
-      if (props.series && 'spiral' === props.type) {
+      if (props.series) {
         seriesMax = this._seriesMax(props.series);
       }
       // Normalize min and max
       var min = this._terminal(props.min || 0);
       // Max could be provided in props or come from the total of
       // a multi-value series.
-      var max = this._terminal(props.max || seriesMax || total);
+      var max = this._terminal(props.max || (props.stacked ? Math.max(seriesMax, total || 0, 100) : seriesMax || Math.max(total || 0, 100)));
       // Normalize simple threshold prop to an array, if needed.
       var thresholds = this._normalizeThresholds(props, min, max);
       // Normalize simple value prop to a series, if needed.
@@ -448,7 +448,10 @@ var Meter = function (_Component) {
       }
 
       var minMax = this._renderMinMax(classes);
-      var activeValue = this._renderActiveValue();
+      var activeValue = undefined;
+      if (this.state.series.length > 0) {
+        activeValue = this._renderActiveValue();
+      }
       var legend = undefined;
       var a11yRole = undefined;
 
@@ -490,15 +493,12 @@ var Meter = function (_Component) {
         units: this.props.units,
         vertical: this.props.vertical });
 
-      var graphicContainer = undefined;
-      if (this.state.total > 0) {
-        graphicContainer = _react2.default.createElement(
-          'div',
-          { className: CLASS_ROOT + '__graphic-container' },
-          graphic,
-          minMax
-        );
-      }
+      var graphicContainer = _react2.default.createElement(
+        'div',
+        { className: CLASS_ROOT + '__graphic-container' },
+        graphic,
+        minMax
+      );
 
       return _react2.default.createElement(
         'div',
