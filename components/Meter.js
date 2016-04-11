@@ -280,7 +280,8 @@ var Meter = function (_Component) {
         total = 0;
       }
       var seriesMax = undefined;
-      if (props.series) {
+      // only care about series max when there are multiple values
+      if (props.series && props.series.length > 1) {
         seriesMax = this._seriesMax(props.series);
       }
       // Normalize min and max
