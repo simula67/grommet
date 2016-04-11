@@ -30,6 +30,10 @@ var _SocialLinkedin = require('grommet/components/icons/base/SocialLinkedin');
 
 var _SocialLinkedin2 = _interopRequireDefault(_SocialLinkedin);
 
+var _SocialEmail = require('grommet/components/icons/base/SocialEmail');
+
+var _SocialEmail2 = _interopRequireDefault(_SocialEmail);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -72,9 +76,12 @@ var SocialShare = function (_Component) {
       } else if (type === 'google') {
         socialIcon = _react2.default.createElement(_SocialGoogle2.default, null);
         href = 'https://plus.google.com/share?url=' + encodedLink;
-      } else {
+      } else if (type === 'facebook') {
         socialIcon = _react2.default.createElement(_SocialFacebook2.default, null);
         href = 'https://www.facebook.com/sharer/sharer.php?u=' + encodedLink;
+      } else if (type === 'email') {
+        socialIcon = _react2.default.createElement(_SocialEmail2.default, null);
+        href = 'mailto:?subject=' + encodedTitle + '&body=' + encodedText + '%0D%0A' + encodedLink;
       }
 
       return _react2.default.createElement(_Anchor2.default, { href: href, icon: socialIcon, target: '_blank' });
@@ -88,7 +95,7 @@ exports.default = SocialShare;
 ;
 
 SocialShare.propTypes = {
-  type: _react.PropTypes.oneOf(['facebook', 'twitter', 'linkedin', 'google']).isRequired,
+  type: _react.PropTypes.oneOf(['email', 'facebook', 'twitter', 'linkedin', 'google']).isRequired,
   link: _react.PropTypes.string.isRequired,
   title: _react.PropTypes.string,
   text: _react.PropTypes.string
