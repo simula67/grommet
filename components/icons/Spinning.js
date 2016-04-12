@@ -41,7 +41,13 @@ var Spinning = function (_Component) {
       }
       return _react2.default.createElement(
         "svg",
-        { className: classes.join(' '), viewBox: "0 0 48 48", version: "1.1" },
+        { className: classes.join(' '), viewBox: "0 0 48 48", version: "1.1",
+          role: "img" },
+        _react2.default.createElement(
+          "title",
+          null,
+          "Spinning"
+        ),
         _react2.default.createElement("circle", { stroke: "#ddd", strokeWidth: "4", strokeDasharray: "24px 8px", fill: "none", cx: "24", cy: "24", r: "20" }),
         _react2.default.createElement("circle", { stroke: "#333", strokeWidth: "4", strokeDasharray: "24px 104px", fill: "none", cx: "24", cy: "24", r: "20" })
       );
