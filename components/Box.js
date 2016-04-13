@@ -103,6 +103,13 @@ var Box = function (_Component) {
       this._addPropertyClass(classes, CLASS_ROOT, 'separator');
       this._addPropertyClass(classes, CLASS_ROOT, 'textAlign', 'text-align');
       this._addPropertyClass(classes, CLASS_ROOT, 'wrap');
+      if (this.props.hasOwnProperty('flex')) {
+        if (this.props.flex) {
+          classes.push('flex');
+        } else {
+          classes.push('no-flex');
+        }
+      }
 
       if (this.props.appCentered) {
         this._addPropertyClass(containerClasses, CLASS_ROOT + "__container", 'full');
@@ -205,6 +212,7 @@ Box.propTypes = {
   containerClassName: _react.PropTypes.string,
   direction: _react.PropTypes.oneOf(['row', 'column']),
   focusable: _react.PropTypes.bool,
+  flex: _react.PropTypes.bool,
   full: _react.PropTypes.oneOf([true, 'horizontal', 'vertical', false]),
   onClick: _react.PropTypes.func,
   justify: _react.PropTypes.oneOf(['start', 'center', 'between', 'end']),

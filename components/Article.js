@@ -80,6 +80,8 @@ var Article = function (_Component) {
     _this._onFocusChange = _this._onFocusChange.bind(_this);
     _this._onScroll = _this._onScroll.bind(_this);
     _this._onWheel = _this._onWheel.bind(_this);
+    _this._onTouchStart = _this._onTouchStart.bind(_this);
+    _this._onTouchMove = _this._onTouchMove.bind(_this);
     _this._onResize = _this._onResize.bind(_this);
     _this._onNext = _this._onNext.bind(_this);
     _this._onPrevious = _this._onPrevious.bind(_this);
@@ -174,7 +176,7 @@ var Article = function (_Component) {
   }, {
     key: '_onScroll',
     value: function _onScroll(event) {
-      if (event.currentTarget === this._scrollParent) {
+      if (event.target === this._scrollParent) {
         if ('row' === this.props.direction) {
           if (!this.state.ignoreScroll) {
             var activeIndex = this.state.activeIndex;
@@ -200,8 +202,8 @@ var Article = function (_Component) {
       if ('row' === this.props.direction) {
         // Horizontal scrolling.
         if (!this.state.ignoreScroll) {
-          // Only step if the user isn't scrolling vertically
-          if (Math.abs(event.deltaY) < Math.abs(event.deltaX)) {
+          // Only step if the user isn't scrolling vertically, bias vertically
+          if (Math.abs(event.deltaY) < Math.abs(event.deltaX * 2)) {
             event.preventDefault();
             // Constrain scrolling to lock on each section.
             if (event.deltaX > 0) {
@@ -240,6 +242,30 @@ var Article = function (_Component) {
       }
     }
   }, {
+    key: '_onTouchStart',
+    value: function _onTouchStart(event) {
+      var touched = event.changedTouches[0];
+      this._touchStartX = touched.clientX;
+      this._touchStartY = touched.clientY;
+    }
+  }, {
+    key: '_onTouchMove',
+    value: function _onTouchMove(event) {
+      if (!this.state.ignoreScroll) {
+        var touched = event.changedTouches[0];
+        var deltaX = touched.clientX - this._touchStartX;
+        var deltaY = touched.clientY - this._touchStartY;
+        // Only step if the user isn't scrolling vertically, bias vertically
+        if (Math.abs(deltaY) < Math.abs(deltaX * 2)) {
+          if (deltaX < 0) {
+            this._onNext();
+          } else {
+            this._onPrevious();
+          }
+        }
+      }
+    }
+  }, {
     key: '_onResize',
     value: function _onResize() {
       var _this4 = this;
@@ -272,7 +298,7 @@ var Article = function (_Component) {
           if (event || wrap || edge <= limit) {
             // This is the first visible child, select the next one
             if (index + 1 !== activeIndex) {
-              this._onSelect(index + 1);
+              this._onSelect(Math.min(childCount - 1, index + 1));
             }
             advanced = true;
           }
@@ -305,7 +331,7 @@ var Article = function (_Component) {
           if (event || edge >= 0) {
             // This is the first visible child, select the previous one
             if (index - 1 !== activeIndex) {
-              this._onSelect(index - 1);
+              this._onSelect(Math.max(0, index - 1));
             }
           }
           break;
@@ -432,8 +458,6 @@ var Article = function (_Component) {
   }, {
     key: 'render',
     value: function render() {
-      var _this8 = this;
-
       var classes = [CLASS_ROOT];
       var other = _Props2.default.pick(this.props, Object.keys(_Box2.default.propTypes));
       if (this.props.scrollStep) {
@@ -457,20 +481,20 @@ var Article = function (_Component) {
             });
             var elementNode = elementClone;
 
-            var ariaHidden = undefined;
-            if (_this8.state.activeIndex !== index) {
-              ariaHidden = 'true';
-            }
+            // let ariaHidden;
+            // if (this.state.activeIndex !== index) {
+            //   ariaHidden = 'true';
+            // }
 
-            if (_this8.props.controls) {
-              elementNode = _react2.default.createElement(
-                'div',
-                { 'aria-hidden': ariaHidden },
-                _react2.default.createElement('a', { tabIndex: '-1', 'aria-hidden': 'true',
-                  ref: 'anchor_step_' + index, onFocus: element.props.onFocus }),
-                elementClone
-              );
-            }
+            // if (this.props.controls) {
+            //   elementNode = (
+            //     <div aria-hidden={ariaHidden}>
+            //       <a tabIndex='-1' aria-hidden='true'
+            //         ref={`anchor_step_${index}`} onFocus={element.props.onFocus} />
+            //       {elementClone}
+            //     </div>
+            //   );
+            // }
 
             return elementNode;
           }
@@ -483,7 +507,8 @@ var Article = function (_Component) {
         _Box2.default,
         _extends({ ref: 'component', tag: 'article' }, other, {
           className: classes.join(' '), onFocus: this._onFocusChange,
-          onScroll: this._onScroll,
+          onScroll: this._onScroll, onTouchStart: this._onTouchStart,
+          onTouchMove: this._onTouchMove,
           primary: this.props.primary }),
         children,
         controls

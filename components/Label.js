@@ -61,4 +61,8 @@ Label.propTypes = {
   margin: _react.PropTypes.oneOf(['none', 'small', 'medium', 'large']),
   uppercase: _react.PropTypes.bool
 };
+
+Label.defaultProps = {
+  margin: 'medium'
+};
 module.exports = exports['default'];
