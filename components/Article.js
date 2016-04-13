@@ -174,7 +174,7 @@ var Article = function (_Component) {
   }, {
     key: '_onScroll',
     value: function _onScroll(event) {
-      if (event.target === this._scrollParent) {
+      if (event.currentTarget === this._scrollParent) {
         if ('row' === this.props.direction) {
           if (!this.state.ignoreScroll) {
             var activeIndex = this.state.activeIndex;
