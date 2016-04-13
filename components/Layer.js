@@ -54,6 +54,7 @@ var LayerContents = function (_Component) {
 
     var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(LayerContents).call(this));
 
+    _this._onClick = _this._onClick.bind(_this);
     _this._processTab = _this._processTab.bind(_this);
     return _this;
   }
@@ -83,6 +84,7 @@ var LayerContents = function (_Component) {
 
       if (this.props.onClose) {
         this._keyboardHandlers.esc = this.props.onClose;
+        document.addEventListener('click', this._onClick.bind(this));
       }
 
       _KeyboardAccelerators2.default.startListeningToKeyboard(this, this._keyboardHandlers);
@@ -102,6 +104,18 @@ var LayerContents = function (_Component) {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
       _KeyboardAccelerators2.default.stopListeningToKeyboard(this, this._keyboardHandlers);
+
+      if (this.props.onClose) {
+        document.removeEventListener('click', this._onClick.bind(this));
+      }
+    }
+  }, {
+    key: '_onClick',
+    value: function _onClick(event) {
+      var layerContents = this.refs.container;
+      if (layerContents && !layerContents.contains(event.target)) {
+        this.props.onClose();
+      }
     }
   }, {
     key: '_processTab',

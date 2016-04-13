@@ -89,6 +89,9 @@ var FormField = function (_Component) {
       if (this.props.htmlFor) {
         classes.push(CLASS_ROOT + "--text");
       }
+      if (this.props.size) {
+        classes.push(CLASS_ROOT + "--size-" + this.props.size);
+      }
       if (this.props.className) {
         classes.push(this.props.className);
       }
@@ -119,6 +122,7 @@ var FormField = function (_Component) {
           this.props.label
         );
       }
+
       return _react2.default.createElement(
         'div',
         { className: classes.join(' '), onClick: this._onClick },
@@ -145,6 +149,11 @@ FormField.propTypes = {
   hidden: _react.PropTypes.bool,
   htmlFor: _react.PropTypes.string,
   label: _react.PropTypes.node,
-  required: _react.PropTypes.bool
+  required: _react.PropTypes.bool,
+  size: _react.PropTypes.oneOf(['medium', 'large'])
+};
+
+FormField.defaultProps = {
+  size: 'medium'
 };
 module.exports = exports['default'];
