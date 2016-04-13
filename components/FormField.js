@@ -92,6 +92,9 @@ var FormField = function (_Component) {
       if (this.props.size) {
         classes.push(CLASS_ROOT + "--size-" + this.props.size);
       }
+      if (this.props.strong) {
+        classes.push(CLASS_ROOT + '--strong');
+      }
       if (this.props.className) {
         classes.push(this.props.className);
       }
@@ -150,10 +153,12 @@ FormField.propTypes = {
   htmlFor: _react.PropTypes.string,
   label: _react.PropTypes.node,
   required: _react.PropTypes.bool,
-  size: _react.PropTypes.oneOf(['medium', 'large'])
+  size: _react.PropTypes.oneOf(['medium', 'large']),
+  strong: _react.PropTypes.bool
 };
 
 FormField.defaultProps = {
-  size: 'medium'
+  size: 'medium',
+  strong: false
 };
 module.exports = exports['default'];
