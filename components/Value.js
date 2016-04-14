@@ -73,14 +73,14 @@ var Value = function (_Component) {
         _react2.default.createElement(
           'div',
           { className: CLASS_ROOT + '__annotated' },
-          this.props.trendIcon,
+          this.props.icon,
           _react2.default.createElement(
             'span',
             { className: CLASS_ROOT + '__value' },
             this.props.value
           ),
           units,
-          this.props.icon
+          this.props.trendIcon
         ),
         label
       );
@@ -98,7 +98,7 @@ Value.propTypes = {
   icon: _react.PropTypes.node,
   label: _react.PropTypes.string,
   onClick: _react.PropTypes.func,
-  size: _react.PropTypes.oneOf(['small', 'medium', 'large']),
+  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'huge']),
   trendIcon: _react.PropTypes.node,
   value: _react.PropTypes.number.isRequired,
   units: _react.PropTypes.string
