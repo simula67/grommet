@@ -203,7 +203,7 @@ var Article = function (_Component) {
         // Horizontal scrolling.
         if (!this.state.ignoreScroll) {
           // Only step if the user isn't scrolling vertically, bias vertically
-          if (Math.abs(event.deltaY) < Math.abs(event.deltaX * 2)) {
+          if (Math.abs(event.deltaY * 4) < Math.abs(event.deltaX)) {
             event.preventDefault();
             // Constrain scrolling to lock on each section.
             if (event.deltaX > 0) {
