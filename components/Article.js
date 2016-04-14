@@ -183,10 +183,10 @@ var Article = function (_Component) {
 
             var childElement = _reactDom2.default.findDOMNode(this.refs[activeIndex]);
             var rect = childElement.getBoundingClientRect();
-            if (rect.left < 0) {
+            if (rect.left < -1) {
               // scrolling right
               this._onNext();
-            } else {
+            } else if (rect.left > 1) {
               // scrolling left
               this._onPrevious();
             }
@@ -203,7 +203,7 @@ var Article = function (_Component) {
         // Horizontal scrolling.
         if (!this.state.ignoreScroll) {
           // Only step if the user isn't scrolling vertically, bias vertically
-          if (Math.abs(event.deltaY * 4) < Math.abs(event.deltaX)) {
+          if (event.deltaX > 10 && Math.abs(event.deltaY * 4) < Math.abs(event.deltaX)) {
             event.preventDefault();
             // Constrain scrolling to lock on each section.
             if (event.deltaX > 0) {
