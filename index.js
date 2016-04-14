@@ -13,6 +13,7 @@ var Grommet = {
   Chart: require('./components/Chart'),
   CheckBox: require('./components/CheckBox'),
   Columns: require('./components/Columns'),
+  DateTime: require('./components/DateTime'),
   Distribution: require('./components/Distribution'),
   Footer: require('./components/Footer'),
   Form: require('./components/Form'),
