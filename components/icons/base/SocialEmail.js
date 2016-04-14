@@ -69,12 +69,15 @@ var Icon = function (_Component) {
           { id: a11yTitleId },
           a11yTitle
         ),
+        _react2.default.createElement('defs', null),
         _react2.default.createElement(
           'g',
-          { id: 'social-email' },
-          _react2.default.createElement('rect', { id: '_x2E_svg_306_', x: '0', y: '0', fill: 'none', width: '24', height: '24' }),
-          _react2.default.createElement('path', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', d: 'M23,20.5H1v-16h22V20.5z' }),
-          _react2.default.createElement('polyline', { fill: 'none', stroke: '#000000', strokeWidth: '2', strokeMiterlimit: '10', points: '1,5.8985 12,14.8985 23,5.8985 \t' })
+          { id: 'Page-1', stroke: 'none', strokeWidth: '1', fill: 'none', fillRule: 'evenodd' },
+          _react2.default.createElement(
+            'g',
+            { id: 'mail-option-24', fill: '#000000' },
+            _react2.default.createElement('path', { d: 'M23,20 L23,6 L12,15 L1,6 L1,20 L23,20 Z M12,12 L22,4 L2,4 L12,12 Z', id: 'envelope' })
+          )
         )
       );
     }

@@ -69,11 +69,15 @@ var Icon = function (_Component) {
           { id: a11yTitleId },
           a11yTitle
         ),
+        _react2.default.createElement('defs', null),
         _react2.default.createElement(
           'g',
-          { id: 'social-facebook' },
-          _react2.default.createElement('rect', { id: '_x2E_svg_308_', x: '0', y: '0', fill: 'none', width: '24', height: '24' }),
-          _react2.default.createElement('path', { id: 'f', d: 'M13.1218,22.399V12.3634h3.3689l0.504-3.9107h-3.8729V5.9551c0-1.1321,0.3145-1.9037,1.9383-1.9037l2.0709-0.0006\r V0.5524C16.773,0.5052,15.5436,0.399,14.1134,0.399c-2.9857,0-5.03,1.822-5.03,5.1694v2.8843H5.7061v3.9107h3.3772V22.399H13.1218z\r ' })
+          { id: 'Page-1', stroke: 'none', strokeWidth: '1', fill: 'none', fillRule: 'evenodd' },
+          _react2.default.createElement(
+            'g',
+            { id: 'facebook-24', fill: '#000000' },
+            _react2.default.createElement('path', { d: 'M14,23 L14,13 L17,13 L18,9 L14,9 L14,7 C14.1401313,5.424 15,5 16,5 L18,5 L18,1 C17.6553173,1.106 16.472035,1 15,1 C12,1 10,3 10,6 L10,9 L7,9 L7,13 L10,13 L10,23 L14,23 Z', id: 'Facebook' })
+          )
         )
       );
     }
