@@ -53,6 +53,7 @@ var Grommet = {
   Tile: require('./components/Tile'),
   Title: require('./components/Title'),
   Topology: require('./components/Topology'),
+  Value: require('./components/Value'),
   Video: require('./components/Video'),
   Object: require('./components/Object'),
   TBD: require('./components/TBD'),
