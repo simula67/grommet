@@ -98,7 +98,7 @@ Value.propTypes = {
   icon: _react.PropTypes.node,
   label: _react.PropTypes.string,
   onClick: _react.PropTypes.func,
-  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'huge']),
+  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
   trendIcon: _react.PropTypes.node,
   value: _react.PropTypes.number.isRequired,
   units: _react.PropTypes.string
