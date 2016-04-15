@@ -101,7 +101,7 @@ Value.propTypes = {
   onClick: _react.PropTypes.func,
   size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge']),
   trendIcon: _react.PropTypes.node,
-  value: _react.PropTypes.number.isRequired,
+  value: _react.PropTypes.oneOfType([_react.PropTypes.number, _react.PropTypes.string]).isRequired,
   units: _react.PropTypes.string
 };
 
