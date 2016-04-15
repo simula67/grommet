@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -53,9 +53,6 @@ var Icon = function (_Component) {
       var a11yTitle = _props2.a11yTitle;
       var size = _props2.size;
 
-      if (!size && large) {
-        size = 'large';
-      }
 
       var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '-subtract', className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + size, size), _defineProperty(_classnames, 'color-index-' + colorIndex, colorIndex), _classnames));
 
@@ -89,8 +86,7 @@ Icon.propTypes = {
   a11yTitle: _react.PropTypes.string,
   a11yTitleId: _react.PropTypes.string,
   colorIndex: _react.PropTypes.string,
-  large: _react.PropTypes.bool,
-  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'huge'])
+  size: _react.PropTypes.oneOf(['small', 'medium', 'large', 'xlarge', 'huge'])
 };
 
 Icon.defaultProps = {

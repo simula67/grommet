@@ -1,10 +1,10 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
 
 var _react = require('react');
 
@@ -78,8 +78,8 @@ exports.default = {
       var onOut = onActivate.bind(null, null);
 
       var a11yRoles = {};
-      var titleComponent = undefined;
-      var activeSlice = undefined;
+      var titleComponent = void 0;
+      var activeSlice = void 0;
       if (a11yTitle && a11yDescId) {
         activeSlice = activeMeterSlice;
         var pathTitleId = 'title_' + a11yDescId;

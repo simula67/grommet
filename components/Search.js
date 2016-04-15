@@ -1,12 +1,12 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -139,7 +139,7 @@ var Search = function (_Component) {
         document.addEventListener('click', this._onRemoveDrop);
         _KeyboardAccelerators2.default.startListeningToKeyboard(this, activeKeyboardHandlers);
 
-        var baseElement = undefined;
+        var baseElement = void 0;
         if (this.refs.control) {
           baseElement = this.refs.control.firstChild;
         } else {
@@ -211,7 +211,7 @@ var Search = function (_Component) {
   }, {
     key: '_fireDOMChange',
     value: function _fireDOMChange() {
-      var event = undefined;
+      var event = void 0;
       try {
         event = new Event('change', {
           'bubbles': true,
@@ -257,7 +257,7 @@ var Search = function (_Component) {
     value: function _onEnter(event) {
       event.preventDefault(); // prevent submitting forms
       this._onRemoveDrop();
-      var suggestion = undefined;
+      var suggestion = void 0;
       if (this.state.activeSuggestionIndex >= 0) {
         suggestion = this.props.suggestions[this.state.activeSuggestionIndex];
         this.setState({ value: suggestion });
@@ -333,7 +333,7 @@ var Search = function (_Component) {
 
       var classes = (0, _classnames5.default)((_classnames = {}, _defineProperty(_classnames, 'background-color-index-' + this.props.dropColorIndex, this.props.dropColorIndex), _defineProperty(_classnames, CLASS_ROOT + '__drop', true), _defineProperty(_classnames, CLASS_ROOT + '__drop--controlled', !this.state.inline), _defineProperty(_classnames, CLASS_ROOT + '__drop--large', this.props.large), _classnames));
 
-      var input = undefined;
+      var input = void 0;
       if (!this.state.inline) {
         input = _react2.default.createElement('input', { key: 'input', id: 'search-drop-input', type: 'search',
           autoComplete: 'off',
@@ -343,7 +343,7 @@ var Search = function (_Component) {
           onChange: this._onChangeInput });
       }
 
-      var suggestions = undefined;
+      var suggestions = void 0;
       if (this.props.suggestions) {
         suggestions = this.props.suggestions.map(function (suggestion, index) {
           var _classnames2;
@@ -430,6 +430,7 @@ var Search = function (_Component) {
 }(_react.Component);
 
 exports.default = Search;
+
 
 Search.propTypes = {
   defaultValue: _react.PropTypes.string,

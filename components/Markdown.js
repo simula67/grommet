@@ -36,6 +36,7 @@ var Markdown = function Markdown(props) {
   var content = props.content;
   var components = props.components;
 
+
   var heading = ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].reduce(function (heading, current) {
     heading[current] = {
       component: _Heading2.default,

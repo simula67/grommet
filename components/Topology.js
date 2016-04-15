@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -162,17 +162,17 @@ var Parts = function (_Component3) {
         }
         // find max
         var max = 0;
-        for (var i = 0; i < parts.length; i += 1) {
+        for (var _i = 0; _i < parts.length; _i += 1) {
           if ('column' === this.props.direction) {
-            max = Math.max(max, parts[i].offsetHeight);
+            max = Math.max(max, parts[_i].offsetHeight);
           } else {
-            max = Math.max(max, parts[i].offsetWidth);
+            max = Math.max(max, parts[_i].offsetWidth);
           }
         }
         // set basis
-        for (var i = 0; i < parts.length; i += 1) {
-          parts[i].style.webkitFlexBasis = '' + max + 'px';
-          parts[i].style.flexBasis = '' + max + 'px';
+        for (var _i2 = 0; _i2 < parts.length; _i2 += 1) {
+          parts[_i2].style.webkitFlexBasis = '' + max + 'px';
+          parts[_i2].style.flexBasis = '' + max + 'px';
         }
       }
     }
@@ -312,8 +312,8 @@ var Topology = function (_Component4) {
               var delta = [Math.abs(p1[0] - p2[0]), Math.abs(p1[1] - p2[1])];
               context.beginPath();
               context.moveTo(p1[0], p1[1]);
-              var cp1 = undefined;
-              var cp2 = undefined;
+              var cp1 = void 0;
+              var cp2 = void 0;
 
               if (this.state.highlights[id]) {
                 context.lineWidth = 4;
@@ -441,6 +441,7 @@ var Topology = function (_Component4) {
 }(_react.Component);
 
 exports.default = Topology;
+
 
 Topology.propTypes = {
   links: _react.PropTypes.arrayOf(_react.PropTypes.shape({

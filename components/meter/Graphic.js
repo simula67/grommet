@@ -1,12 +1,12 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -95,10 +95,10 @@ var Graphic = function (_Component) {
   }, {
     key: '_renderSlice',
     value: function _renderSlice(trackIndex, item, itemIndex, startValue, threshold) {
-      var path = undefined;
+      var path = void 0;
       if (!item.hidden) {
         var classes = [CLASS_ROOT + '__slice'];
-        var activeMeterSlice = undefined;
+        var activeMeterSlice = void 0;
         if (itemIndex === this.props.activeIndex) {
           activeMeterSlice = 'activeMeterSlice';
           classes.push(CLASS_ROOT + '__slice--active');
@@ -204,7 +204,7 @@ var Graphic = function (_Component) {
     value: function _renderValues() {
       var _this2 = this;
 
-      var values = undefined;
+      var values = void 0;
       if (this.props.stacked) {
         values = this._renderSlices(this.props.series, 0);
       } else {
@@ -227,7 +227,7 @@ var Graphic = function (_Component) {
       var _this3 = this;
 
       var trackValue = { value: this.props.max.value, colorIndex: 'unset' };
-      var tracks = undefined;
+      var tracks = void 0;
       if (this.props.stacked) {
         tracks = this._renderSlice(0, trackValue, 0, this.props.min.value, true);
       } else {
@@ -244,7 +244,7 @@ var Graphic = function (_Component) {
   }, {
     key: '_renderThresholds',
     value: function _renderThresholds() {
-      var result = undefined;
+      var result = void 0;
       var thresholds = this._renderSlices(this.props.thresholds, -0.4, true);
       if (thresholds.length > 0) {
         result = _react2.default.createElement(
@@ -374,6 +374,7 @@ var Graphic = function (_Component) {
 }(_react.Component);
 
 exports.default = Graphic;
+
 
 Graphic.propTypes = _extends({
   a11yRole: _react.PropTypes.string,

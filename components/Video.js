@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -183,7 +183,7 @@ var Video = function (_Component) {
       var a11yControlButtonMessage = this.state.playing ? 'Pause Video' : this.state.ended ? 'Restart Video' : 'Play Video';
       var a11yControlButtonTitle = _Intl2.default.getMessage(this.context.intl, a11yControlButtonMessage);
 
-      var videoHeader = undefined;
+      var videoHeader = void 0;
       var videoSummaryJustify = 'between';
       if (this.props.videoHeader) {
         videoHeader = this.props.videoHeader;
@@ -202,7 +202,7 @@ var Video = function (_Component) {
         videoSummaryJustify = 'center';
       }
 
-      var title = undefined;
+      var title = void 0;
       if (this.props.title) {
         classes.push(CLASS_ROOT + '--titled');
         title = _react2.default.createElement(
@@ -212,7 +212,7 @@ var Video = function (_Component) {
         );
       }
 
-      var timeline = undefined;
+      var timeline = void 0;
       if (this.props.timeline && this.props.duration) {
 
         var chapters = this.props.timeline.map(function (chapter, index, chapters) {
@@ -249,7 +249,7 @@ var Video = function (_Component) {
         );
       }
 
-      var progress = undefined;
+      var progress = void 0;
       if (this.props.duration) {
         var percent = Math.round(this.state.progress / this.props.duration * 100);
         progress = _react2.default.createElement(
@@ -294,6 +294,7 @@ var Video = function (_Component) {
 }(_react.Component);
 
 exports.default = Video;
+
 
 Video.propTypes = {
   colorIndex: _react.PropTypes.string,

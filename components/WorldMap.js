@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -121,10 +121,10 @@ var WorldMap = function (_Component) {
       if (index === this.state.activeIndex) {
         classes.push(CLASS_ROOT + '__continent--active');
       }
-      var onMouseOver = undefined,
-          onMouseLeave = undefined,
-          onClick = undefined,
-          area = undefined;
+      var onMouseOver = void 0,
+          onMouseLeave = void 0,
+          onClick = void 0,
+          area = void 0;
       if (seriesData.onClick) {
         onMouseOver = this._onActivate.bind(this, index);
         onMouseLeave = this._onDeactivate;
@@ -169,6 +169,7 @@ var WorldMap = function (_Component) {
 }(_react.Component);
 
 exports.default = WorldMap;
+
 
 WorldMap.propTypes = {
   series: _react.PropTypes.arrayOf(_react.PropTypes.shape({

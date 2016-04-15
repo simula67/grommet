@@ -1,12 +1,12 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -124,7 +124,7 @@ var Distribution = function (_Component) {
   }, {
     key: '_stateFromProps',
     value: function _stateFromProps(props) {
-      var total = undefined;
+      var total = void 0;
       var allIcons = false;
       if (props.series) {
         total = this._seriesTotal(props.series);
@@ -196,13 +196,13 @@ var Distribution = function (_Component) {
 
         // Start a new group.
         var groupValue = datum.value;
-        var targetGroupValue = undefined;
+        var targetGroupValue = void 0;
 
         // Make the first item as square as possible.
         var itemArea = areaPer * datum.value;
         var edgeLength = Math.round(Math.sqrt(itemArea));
-        var itemHeight = undefined;
-        var itemWidth = undefined;
+        var itemHeight = void 0;
+        var itemWidth = void 0;
 
         // Figure out how much value we can fit inside a rectangle
         // that takes the full minor axis length
@@ -228,7 +228,7 @@ var Distribution = function (_Component) {
 
         // Now that we know the actual value of the group, give it a
         // rectangle whose area corresponds to the actual group value.
-        var groupRect = undefined;
+        var groupRect = void 0;
         if (remainingRect.width > remainingRect.height) {
           // landscape, lay out left to right
           groupRect = { x: remainingRect.x, y: remainingRect.y,
@@ -249,7 +249,7 @@ var Distribution = function (_Component) {
         // We take the full minor axis length and as much major axis length
         // as needed to match the item's area.
         group.forEach(function (datum) {
-          var itemRect = undefined;
+          var itemRect = void 0;
           if (groupRect.width > groupRect.height) {
             // landscape, use full height
             itemRect = { x: groupRect.x, y: groupRect.y,
@@ -492,14 +492,14 @@ var Distribution = function (_Component) {
         itemClasses.push(itemClass + '--clickable');
       }
 
-      var activeDistribution = undefined;
+      var activeDistribution = void 0;
       if (index === this.state.activeIndex) {
         activeDistribution = 'activeDistribution';
       }
 
       var colorIndex = this._itemColorIndex(datum, index);
 
-      var contents = undefined;
+      var contents = void 0;
       if (datum.icon) {
         contents = this._renderItemIcon(datum.icon, rect, colorIndex);
       } else {
@@ -570,19 +570,19 @@ var Distribution = function (_Component) {
         classes.push(this.props.className);
       }
 
-      var legend = undefined;
+      var legend = void 0;
       if (this.props.legend) {
         legend = this._renderLegend();
       }
 
-      var background = undefined;
+      var background = void 0;
       if (!this.state.allIcons) {
         background = _react2.default.createElement('rect', { className: CLASS_ROOT + '__background', x: 0, y: 0, stroke: 'none',
           width: this.state.width, height: this.state.height });
       }
 
       var boxes = [];
-      var labels = undefined;
+      var labels = void 0;
       if (this.state.items) {
         boxes = this._renderBoxes();
         labels = this._renderLabels();
@@ -598,7 +598,7 @@ var Distribution = function (_Component) {
         a11yTitle = _Intl2.default.getMessage(this.context.intl, 'Loading');
       }
 
-      var activeDescendant = undefined;
+      var activeDescendant = void 0;
       if (this.state.activeIndex >= 0) {
         activeDescendant = this.props.a11yTitleId + '_item_' + this.state.activeIndex;
       }
@@ -609,7 +609,7 @@ var Distribution = function (_Component) {
         a11yTitle
       );
 
-      var a11yDescNode = undefined;
+      var a11yDescNode = void 0;
       if (this.props.a11yDesc) {
         a11yDescNode = _react2.default.createElement(
           'desc',
@@ -647,6 +647,7 @@ var Distribution = function (_Component) {
 }(_react.Component);
 
 exports.default = Distribution;
+
 
 Distribution.contextTypes = {
   intl: _react.PropTypes.object

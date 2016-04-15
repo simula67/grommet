@@ -1,12 +1,12 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -62,13 +62,13 @@ var Notification = function (_Component) {
 
       var classes = (0, _classnames3.default)(CLASS_ROOT, CLASS_ROOT + '--status-' + this.props.status.toLowerCase(), 'background-color-index-' + this.props.status.toLowerCase(), this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--' + this.props.size, this.props.size), _defineProperty(_classnames, CLASS_ROOT + '--disabled', !this.props.onClick), _classnames));
 
-      var status = undefined;
+      var status = void 0;
       if (this.props.status) {
         status = _react2.default.createElement(_Status2.default, { className: CLASS_ROOT + '__status',
           value: this.props.status, size: this.props.size });
       }
 
-      var state = undefined;
+      var state = void 0;
       if (this.props.state) {
         state = _react2.default.createElement(
           'div',
@@ -77,7 +77,7 @@ var Notification = function (_Component) {
         );
       }
 
-      var progress = undefined;
+      var progress = void 0;
       if (this.props.percentComplete || 0 === this.props.percentComplete) {
         progress = _react2.default.createElement(_Meter2.default, { units: '%',
           series: [{
@@ -88,7 +88,7 @@ var Notification = function (_Component) {
           size: 'large' });
       }
 
-      var timestamp = undefined;
+      var timestamp = void 0;
       if (this.props.timestamp) {
         var timestampFormatted = this.props.timestamp.toString();
         if (this.context.intl) {

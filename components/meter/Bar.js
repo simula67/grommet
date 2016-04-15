@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -45,8 +45,8 @@ var Bar = function (_Graphic) {
   _createClass(Bar, [{
     key: '_viewBoxDimensions',
     value: function _viewBoxDimensions(props) {
-      var viewBoxHeight = undefined;
-      var viewBoxWidth = undefined;
+      var viewBoxHeight = void 0;
+      var viewBoxWidth = void 0;
       if (props.vertical) {
         if (props.stacked) {
           viewBoxWidth = BAR_THICKNESS;
@@ -91,7 +91,7 @@ var Bar = function (_Graphic) {
       var value = item.value - this.props.min.value;
       var start = this._translateBarWidth(startValue);
       var distance = Math.max(item.value > 0 ? MID_BAR_THICKNESS : 0, this._translateBarWidth(value));
-      var commands = undefined;
+      var commands = void 0;
       if (this.props.legend && 'inline' === this.props.legend.placement) {
         trackIndex *= 2;
       }
@@ -109,7 +109,7 @@ var Bar = function (_Graphic) {
   }, {
     key: '_renderInlineLegend',
     value: function _renderInlineLegend() {
-      var result = undefined;
+      var result = void 0;
       if (this.props.legend && 'inline' === this.props.legend.placement) {
         result = this.props.series.map(function (item, index) {
           var spot = index * BAR_THICKNESS * 2 + MID_BAR_THICKNESS;
@@ -150,6 +150,7 @@ var Bar = function (_Graphic) {
 }(_Graphic3.default);
 
 //needed in Graphic.js to fix minification issues
+
 
 exports.default = Bar;
 Bar.displayName = 'Bar';

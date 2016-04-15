@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -99,7 +99,7 @@ var FormField = function (_Component) {
         classes.push(this.props.className);
       }
 
-      var error = undefined;
+      var error = void 0;
       if (this.props.error) {
         classes.push(CLASS_ROOT + "--error");
         error = _react2.default.createElement(
@@ -108,7 +108,7 @@ var FormField = function (_Component) {
           this.props.error
         );
       }
-      var help = undefined;
+      var help = void 0;
       if (this.props.help !== null && this.props.help !== undefined) {
         help = _react2.default.createElement(
           'span',
@@ -117,7 +117,7 @@ var FormField = function (_Component) {
         );
       }
 
-      var labelNode = undefined;
+      var labelNode = void 0;
       if (this.props.label) {
         labelNode = _react2.default.createElement(
           'label',
@@ -145,6 +145,7 @@ var FormField = function (_Component) {
 }(_react.Component);
 
 exports.default = FormField;
+
 
 FormField.propTypes = {
   error: _react.PropTypes.node,

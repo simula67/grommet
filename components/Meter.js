@@ -1,12 +1,12 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -271,7 +271,7 @@ var Meter = function (_Component) {
   }, {
     key: '_stateFromProps',
     value: function _stateFromProps(props) {
-      var total = undefined;
+      var total = void 0;
       if (props.series) {
         total = this._seriesTotal(props.series);
       } else if (props.hasOwnProperty('value')) {
@@ -279,7 +279,7 @@ var Meter = function (_Component) {
       } else {
         total = 0;
       }
-      var seriesMax = undefined;
+      var seriesMax = void 0;
       // only care about series max when there are multiple values
       if (props.series && props.series.length > 1) {
         seriesMax = this._seriesMax(props.series);
@@ -317,7 +317,7 @@ var Meter = function (_Component) {
   }, {
     key: '_getActiveFields',
     value: function _getActiveFields() {
-      var fields = undefined;
+      var fields = void 0;
       if (null === this.state.activeIndex) {
         fields = {
           value: this.state.total,
@@ -344,7 +344,7 @@ var Meter = function (_Component) {
       if (fields.onClick) {
         classes.push(CLASS_ROOT + '__value--active');
       }
-      var units = undefined;
+      var units = void 0;
       if (this.props.units) {
         units = _react2.default.createElement(
           'span',
@@ -374,7 +374,7 @@ var Meter = function (_Component) {
   }, {
     key: '_renderMinMax',
     value: function _renderMinMax(classes) {
-      var minLabel = undefined;
+      var minLabel = void 0;
       if (this.state.min.label) {
         minLabel = _react2.default.createElement(
           'div',
@@ -382,7 +382,7 @@ var Meter = function (_Component) {
           this.state.min.label
         );
       }
-      var maxLabel = undefined;
+      var maxLabel = void 0;
       if (this.state.max.label) {
         maxLabel = _react2.default.createElement(
           'div',
@@ -390,7 +390,7 @@ var Meter = function (_Component) {
           this.state.max.label
         );
       }
-      var minMax = undefined;
+      var minMax = void 0;
       if (minLabel || maxLabel) {
         minMax = _react2.default.createElement(
           'div',
@@ -449,12 +449,12 @@ var Meter = function (_Component) {
       }
 
       var minMax = this._renderMinMax(classes);
-      var activeValue = undefined;
+      var activeValue = void 0;
       if (this.state.series.length > 0) {
         activeValue = this._renderActiveValue();
       }
-      var legend = undefined;
-      var a11yRole = undefined;
+      var legend = void 0;
+      var a11yRole = void 0;
 
       if (this.props.legend || this.props.series) {
         a11yRole = 'tablist';
@@ -519,6 +519,7 @@ var Meter = function (_Component) {
 }(_react.Component);
 
 exports.default = Meter;
+
 
 Meter.propTypes = {
   a11yTitle: _react.PropTypes.string,

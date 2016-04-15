@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -251,7 +251,7 @@ var Table = function (_Component) {
 
       var classes = (0, _classnames3.default)(CLASS_ROOT, this.props.className, (_classnames = {}, _defineProperty(_classnames, CLASS_ROOT + '--small', this.state.small), _defineProperty(_classnames, CLASS_ROOT + '--selectable', this.props.selectable), _defineProperty(_classnames, CLASS_ROOT + '--scrollable', this.props.scrollable), _classnames));
 
-      var mirror = undefined;
+      var mirror = void 0;
       if (this.props.scrollable) {
         mirror = _react2.default.createElement(
           'table',
@@ -264,7 +264,7 @@ var Table = function (_Component) {
         );
       }
 
-      var more = undefined;
+      var more = void 0;
       if (this.props.onMore) {
         more = _react2.default.createElement(
           'div',
@@ -292,6 +292,7 @@ var Table = function (_Component) {
 }(_react.Component);
 
 exports.default = Table;
+
 
 Table.propTypes = {
   onMore: _react.PropTypes.func,

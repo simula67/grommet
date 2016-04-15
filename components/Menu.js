@@ -1,12 +1,12 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -314,13 +314,13 @@ var Menu = function (_Component2) {
     _this2._onFocusControl = _this2._onFocusControl.bind(_this2);
     _this2._onBlurControl = _this2._onBlurControl.bind(_this2);
 
-    var inline = undefined;
+    var inline = void 0;
     if (props.hasOwnProperty('inline')) {
       inline = props.inline;
     } else {
       inline = !props.label && !props.icon;
     }
-    var responsive = undefined;
+    var responsive = void 0;
     if (props.hasOwnProperty('responsive')) {
       responsive = props.responsive;
     } else {
@@ -457,8 +457,8 @@ var Menu = function (_Component2) {
   }, {
     key: '_renderControlContents',
     value: function _renderControlContents() {
-      var icon = undefined,
-          label = undefined;
+      var icon = void 0,
+          label = void 0;
 
       // If this is a collapsed inline Menu, use any icon and/or label provided,
       // revert to default icon if neither.
@@ -516,7 +516,7 @@ var Menu = function (_Component2) {
 
       if (this.state.inline) {
         var boxProps = _Props2.default.pick(this.props, Object.keys(_Box2.default.propTypes));
-        var label = undefined;
+        var label = void 0;
         if ('explode' === this.state.inline) {
           label = _react2.default.createElement(
             'div',
@@ -562,6 +562,7 @@ var Menu = function (_Component2) {
 }(_react.Component);
 
 exports.default = Menu;
+
 
 Menu.propTypes = _extends({
   closeOnClick: _react.PropTypes.bool,

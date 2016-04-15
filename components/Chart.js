@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -163,7 +163,7 @@ var Chart = function (_Component) {
     key: '_bounds',
     value: function _bounds(series, xAxisArg, width, height) {
       // normalize xAxis
-      var xAxis = undefined;
+      var xAxis = void 0;
       if (xAxisArg) {
         if (xAxisArg.data) {
           xAxis = xAxisArg;
@@ -448,7 +448,7 @@ var Chart = function (_Component) {
 
       // Put the control X coordinates midway between the coordinates.
       var deltaX = (current[0] - previous[0]) / 2;
-      var deltaY = undefined;
+      var deltaY = void 0;
 
       // Start with a flat slope. This works for peaks, valleys, and flats.
       var first = [current[0] - deltaX, current[1]];
@@ -519,21 +519,21 @@ var Chart = function (_Component) {
           previousControlCoordinates = controlCoordinates;
         }, this);
 
-        var linePath = undefined;
+        var linePath = void 0;
         if ('line' === this.props.type || this.props.points) {
           var classes = [CLASS_ROOT + "__values-line", "color-index-" + colorIndex];
           linePath = _react2.default.createElement('path', { fill: 'none', className: classes.join(' '), d: commands });
         }
 
-        var areaPath = undefined;
+        var areaPath = void 0;
         if ('area' === this.props.type) {
           // For area charts, close the path by drawing down to the bottom
           // and across to the bottom of where we started.
           var close = 'L' + coordinates[coordinates.length - 1][0] + ',' + bounds.graphBottom + 'L' + coordinates[0][0] + ',' + bounds.graphBottom + 'Z';
           var areaCommands = commands + close;
-          var classes = [CLASS_ROOT + "__values-area", "color-index-" + colorIndex];
+          var _classes = [CLASS_ROOT + "__values-area", "color-index-" + colorIndex];
 
-          areaPath = _react2.default.createElement('path', { stroke: 'none', className: classes.join(' '), d: areaCommands });
+          areaPath = _react2.default.createElement('path', { stroke: 'none', className: _classes.join(' '), d: areaCommands });
         }
 
         return _react2.default.createElement(
@@ -610,7 +610,7 @@ var Chart = function (_Component) {
     value: function _labelPosition(value, bounds) {
       var x = this._translateX(value);
       var startX = x;
-      var anchor = undefined;
+      var anchor = void 0;
       if ('line' === this.props.type || 'area' === this.props.type) {
         // Place the text in the middle for line and area type charts.
         anchor = 'middle';
@@ -645,7 +645,7 @@ var Chart = function (_Component) {
     key: '_renderXAxis',
     value: function _renderXAxis() {
       var bounds = this.state.bounds;
-      var labelY = undefined;
+      var labelY = void 0;
       if ('bottom' === bounds.xAxis.placement) {
         labelY = this.state.height - Math.round(XAXIS_HEIGHT * 0.3);
       } else {
@@ -702,7 +702,7 @@ var Chart = function (_Component) {
     value: function _renderYAxis() {
       var bounds = this.state.bounds;
       var start = bounds.minY;
-      var end = undefined;
+      var end = void 0;
       var width = Math.max(4, YAXIS_WIDTH / 2);
 
       var bars = this.props.thresholds.map(function (item, index) {
@@ -783,8 +783,8 @@ var Chart = function (_Component) {
           x -= bounds.xStepWidth / 2;
         }
 
-        var onMouseOver = undefined;
-        var onMouseOut = undefined;
+        var onMouseOver = void 0;
+        var onMouseOut = void 0;
         if ('front' === layer) {
           onMouseOver = this._onMouseOver.bind(this, xIndex);
           onMouseOut = this._onMouseOut.bind(this, xIndex);
@@ -832,7 +832,7 @@ var Chart = function (_Component) {
       var x = Math.max(1, Math.min(coordinates[0], this.state.bounds.graphWidth - 1));
       var line = _react2.default.createElement('line', { fill: 'none', x1: x, y1: bounds.graphTop, x2: x, y2: bounds.graphBottom });
 
-      var points = undefined;
+      var points = void 0;
       if (this.props.points) {
         // for area and line charts, include a dot at the intersection
         if ('line' === this.props.type || 'area' === this.props.type) {
@@ -952,8 +952,8 @@ var Chart = function (_Component) {
         yAxis = this._renderYAxis();
       }
 
-      var frontBands = undefined;
-      var activeDescendant = undefined;
+      var frontBands = void 0;
+      var activeDescendant = void 0;
       var role = 'img';
       if (this.props.legend) {
         frontBands = this._renderXBands('front');
@@ -962,7 +962,7 @@ var Chart = function (_Component) {
       }
 
       var a11yTitle = this._renderA11YTitle();
-      var a11yTitleNode = undefined;
+      var a11yTitleNode = void 0;
       if (a11yTitle) {
         a11yTitleNode = _react2.default.createElement(
           'title',
@@ -971,7 +971,7 @@ var Chart = function (_Component) {
         );
       }
 
-      var a11yDescNode = undefined;
+      var a11yDescNode = void 0;
       if (this.props.a11yDesc) {
         a11yDescNode = _react2.default.createElement(
           'desc',
@@ -1012,6 +1012,7 @@ var Chart = function (_Component) {
 }(_react.Component);
 
 exports.default = Chart;
+
 
 Chart.propTypes = {
   a11yTitle: _react.PropTypes.string,

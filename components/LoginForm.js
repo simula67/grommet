@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -94,7 +94,7 @@ var LoginForm = function (_Component) {
         return errorComponent;
       });
 
-      var logo = undefined;
+      var logo = void 0;
       if (this.props.logo) {
         logo = _react2.default.createElement(
           'div',
@@ -103,7 +103,7 @@ var LoginForm = function (_Component) {
         );
       }
 
-      var title = undefined;
+      var title = void 0;
       if (this.props.title) {
         title = _react2.default.createElement(
           'h1',
@@ -116,7 +116,7 @@ var LoginForm = function (_Component) {
         );
       }
 
-      var secondaryText = undefined;
+      var secondaryText = void 0;
       if (this.props.secondaryText) {
         secondaryText = _react2.default.createElement(
           'p',
@@ -125,7 +125,7 @@ var LoginForm = function (_Component) {
         );
       }
 
-      var rememberMe = undefined;
+      var rememberMe = void 0;
       if (this.props.rememberMe) {
 
         var rememberMeLabel = _react2.default.createElement(_FormattedMessage2.default, { id: 'Remember me', defaultMessage: 'Remember me' });
@@ -137,7 +137,7 @@ var LoginForm = function (_Component) {
           ref: 'rememberMe' });
       }
 
-      var forgot = undefined;
+      var forgot = void 0;
       if (this.props.forgotPassword) {
         forgot = _react2.default.createElement(
           'div',
@@ -146,7 +146,7 @@ var LoginForm = function (_Component) {
         );
       }
 
-      var username = undefined;
+      var username = void 0;
       if (this.props.usernameType === 'email') {
         username = _react2.default.createElement(_FormattedMessage2.default, { id: 'Email', defaultMessage: 'Email' });
       } else {
@@ -199,6 +199,7 @@ var LoginForm = function (_Component) {
 }(_react.Component);
 
 exports.default = LoginForm;
+
 
 LoginForm.propTypes = {
   align: _react.PropTypes.oneOf(['start', 'center', 'end', 'stretch']),

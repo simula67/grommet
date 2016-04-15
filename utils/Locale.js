@@ -1,10 +1,11 @@
 'use strict';
 
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; // (C) Copyright 2014-2015 Hewlett Packard Enterprise Development LP
+
 exports.setLocale = setLocale;
 exports.getCurrentLocale = getCurrentLocale;
 exports.getLocaleData = getLocaleData;
@@ -49,7 +50,7 @@ function getLocaleData() {
   var appMessages = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
   var locale = arguments.length <= 1 || arguments[1] === undefined ? getCurrentLocale() : arguments[1];
 
-  var grommetMessages = undefined;
+  var grommetMessages = void 0;
   try {
     grommetMessages = require('../messages/' + locale);
   } catch (e) {

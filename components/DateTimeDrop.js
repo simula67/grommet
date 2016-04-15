@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -143,6 +143,7 @@ var DateTimeDrop = function (_Component) {
       var _state = this.state;
       var value = _state.value;
       var timeOfDay = _state.timeOfDay;
+
 
       var headerCells = WEEK_DAYS.map(function (day) {
         return _react2.default.createElement(
@@ -298,8 +299,9 @@ var DateTimeDrop = function (_Component) {
     value: function render() {
       var format = this.props.format;
 
-      var date = undefined,
-          time = undefined;
+
+      var date = void 0,
+          time = void 0;
       if (DATE_REGEXP.test(format)) {
         date = this._renderDate();
       }
@@ -322,6 +324,7 @@ var DateTimeDrop = function (_Component) {
 }(_react.Component);
 
 exports.default = DateTimeDrop;
+
 
 DateTimeDrop.propTypes = {
   format: _react.PropTypes.string,

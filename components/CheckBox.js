@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _react = require('react');
 
@@ -34,7 +34,7 @@ var CheckBox = function (_Component) {
     value: function render() {
       var classes = [CLASS_ROOT];
 
-      var label = undefined;
+      var label = void 0;
       var labelId = CLASS_ROOT + '-label';
       if (this.props.label) {
         label = _react2.default.createElement(
@@ -49,7 +49,7 @@ var CheckBox = function (_Component) {
         classes.push(CLASS_ROOT + '--toggle');
       }
 
-      var hidden = undefined;
+      var hidden = void 0;
       if (this.props.disabled) {
         classes.push(CLASS_ROOT + '--disabled');
         if (this.props.checked) {
@@ -107,6 +107,7 @@ var CheckBox = function (_Component) {
 }(_react.Component);
 
 exports.default = CheckBox;
+
 
 CheckBox.propTypes = {
   checked: _react.PropTypes.bool,

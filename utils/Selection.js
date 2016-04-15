@@ -9,7 +9,7 @@ Object.defineProperty(exports, "__esModule", {
 
 // Ensures it is an array.
 function normalizeIndexes(selectedIndexes) {
-  var result = undefined;
+  var result = void 0;
   if (undefined === selectedIndexes || null === selectedIndexes) {
     result = [];
   } else if (typeof selectedIndexes === 'number') {
@@ -83,7 +83,7 @@ function onClick(event, options) {
     indexInContainer += 1;
   }
 
-  var selectedIndexes = undefined; // what will be returned
+  var selectedIndexes = void 0; // what will be returned
 
   if (!event.ctrlKey && !event.metaKey && !event.shiftKey) {
 
