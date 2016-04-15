@@ -69,7 +69,7 @@ var Icon = function (_Component) {
         _react2.default.createElement('defs', null),
         _react2.default.createElement(
           'g',
-          { id: 'Page-1', stroke: 'none', strokeWidth: '1', fill: 'none', fillRule: 'evenodd' },
+          { id: 'Page-1', stroke: 'none', strokeWidth: '1', fill: 'none' },
           _react2.default.createElement(
             'g',
             { id: 'linkedin-24', fill: '#000000' },
